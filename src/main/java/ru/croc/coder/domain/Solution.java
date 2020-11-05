@@ -1,16 +1,20 @@
 package ru.croc.coder.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@DiscriminatorValue("Solution")
 public class Solution {
 
-    private Long courseId;
+    @ManyToOne
+    private Course course;
 
-    private Long taskId;
+    @OneToOne
+    private Task task;
 
     @Id
+    @Column(unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long solutionId;
 
 }
