@@ -17,4 +17,7 @@ public class Solution {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long solutionId;
 
+    @Enumerated
+    private SolutionStatus solutionStatus;
+
 }
