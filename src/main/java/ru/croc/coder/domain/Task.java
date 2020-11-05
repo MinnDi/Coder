@@ -17,4 +17,10 @@ public class Task {
     @OneToOne
     private Solution solution;
 
+    @Enumerated
+    private TaskDifficulty taskDifficulty;
+
+    @Enumerated
+    private TaskStatus taskStatus;
+
 }

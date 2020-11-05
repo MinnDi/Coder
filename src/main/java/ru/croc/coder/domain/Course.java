@@ -16,6 +16,9 @@ public class Course {
 
     private String description;
 
+    @Enumerated
+    private CourseStatus courseStatus;
+
     public String getDescription() {
         return description;
     }
@@ -26,3 +29,4 @@ public class Course {
 
     public Long getId() { return courseId; }
 }
+
