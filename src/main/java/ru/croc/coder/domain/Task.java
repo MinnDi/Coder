@@ -23,4 +23,43 @@ public class Task {
     @Enumerated
     private TaskStatus taskStatus;
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
+
+    public Solution getSolution() {
+        return solution;
+    }
+
+    public void setSolution(Solution solution) {
+        this.solution = solution;
+    }
+
+    public TaskDifficulty getTaskDifficulty() {
+        return taskDifficulty;
+    }
+
+    public void setTaskDifficulty(TaskDifficulty taskDifficulty) {
+        this.taskDifficulty = taskDifficulty;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 }

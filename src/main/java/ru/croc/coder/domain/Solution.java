@@ -20,4 +20,6 @@ public class Solution {
     @Enumerated
     private SolutionStatus solutionStatus;
 
+
+
 }

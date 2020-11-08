@@ -25,13 +25,21 @@ public class Init implements CommandLineRunner {
 
         if (userRepository.findByEmailIgnoreCase("d_invalid@mail.com").isEmpty()){
             log.info("Creating initial user");
-            User user=new User()
-                    .setFirstName("Dilyara")
-                    .setLastName("Minnikhanova")
-                    .setEmail("d_invalid@mail.com");
-
-            Long userId = userRepository.save(user).getId();
+            Long userId = createUser("Dilyara", "Minnikhanova", "d_invalid@mail.com");
+            log.info("Created user id: {}", userId);
+             userId = createUser("Ivan", "Ivanov", "i_invalid@mail.com");
             log.info("Created user id: {}", userId);
         }
+    }
+
+    private Long createUser(String fName, String sName, String email) {
+        User user=new User()
+                .setFirstName(fName)
+                .setLastName(sName)
+                .setEmail(email)
+                .setPassword("");
+
+        Long userId = userRepository.save(user).getId();
+        return userId;
     }
 }
