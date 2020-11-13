@@ -16,7 +16,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 35  )
     private String password;
 
     public String getPassword() {
