@@ -1,7 +1,7 @@
 package ru.croc.coder.domain;
 
-public enum TaskStatus {
-    NOT_STARTED,
+public enum SolutionStatus {
+    QUEUED,
     IN_PROCESS,
     DONE
 }

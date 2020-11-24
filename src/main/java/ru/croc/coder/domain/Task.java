@@ -1,6 +1,8 @@
 package ru.croc.coder.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @DiscriminatorValue("Tasks")
@@ -8,6 +10,8 @@ public class Task {
 
     @ManyToOne
     private Course course;
+
+    private LocalDateTime deadline;
 
     @Id
     @Column(unique = true, nullable = false)
@@ -25,9 +29,6 @@ public class Task {
     @Column(nullable = false)
     private TaskDifficulty taskDifficulty;
 
-    @Enumerated
-    private TaskStatus taskStatus;
-
     @Lob
     @Column(nullable = false)
     @Basic(fetch = FetchType.LAZY)
@@ -36,11 +37,17 @@ public class Task {
     @Embedded
     private Code template;
 
-    @Enumerated(EnumType.STRING)
-    @Column
-    private ProgrammingLanguage programmingLanguage;
-
     private Integer maxAttempts;
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        if (deadline.isAfter(LocalDateTime.now()))
+            this.deadline = deadline;
+        else throw new IllegalArgumentException();
+    }
 
     public void setAuthor(User author) {
         this.author = author;
@@ -68,14 +75,6 @@ public class Task {
 
     public void setTemplate(Code template) {
         this.template = template;
-    }
-
-    public ProgrammingLanguage getProgrammingLanguage() {
-        return programmingLanguage;
-    }
-
-    public void setProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
-        this.programmingLanguage = programmingLanguage;
     }
 
     public String getDescription() {
@@ -112,13 +111,5 @@ public class Task {
 
     public TaskDifficulty getTaskDifficulty() {
         return taskDifficulty;
-    }
-
-    public TaskStatus getTaskStatus() {
-        return taskStatus;
-    }
-
-    public void setTaskStatus(TaskStatus taskStatus) {
-        this.taskStatus = taskStatus;
     }
 }

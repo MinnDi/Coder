@@ -16,6 +16,8 @@ public class User {
     private String firstName;
     private String lastName;
 
+    private Integer attemptsCount = 0;
+
     @Column(nullable = false, length = 35  )
     private String password;
 
@@ -73,5 +75,14 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public Integer getAttemptsCount() {
+        return attemptsCount;
+    }
+
+    public User setAttemptsCount(Integer attemptsCount) {
+        this.attemptsCount = attemptsCount;
+        return this;
     }
 }

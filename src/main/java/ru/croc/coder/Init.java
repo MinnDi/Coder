@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import ru.croc.coder.domain.*;
-import ru.croc.coder.repository.ProblemRepository;
+import ru.croc.coder.repository.TaskRepository;
 import ru.croc.coder.repository.UserRepository;
 
 @Component
@@ -18,7 +18,7 @@ public class Init implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Autowired
-    private ProblemRepository problemRepository;
+    private TaskRepository taskRepository;
 
     @Override
     public void run (String[] args) throws Exception {
@@ -36,9 +36,9 @@ public class Init implements CommandLineRunner {
         }
 
         User author = userRepository.findByEmailIgnoreCase("d_invalid@mail.com").get();
-        Task task1 = createEasyJavaProblem(author, "Do a + b");
+        Task task1 = createEasyJavaTask(author, "Do a + b");
         log.info("Created problem id: {}", task1.getTaskId());
-        Task task2 = createEasyJavaProblem(author, "Do a / b");
+        Task task2 = createEasyJavaTask(author, "Do a / b");
         log.info("Created problem id: {}", task2.getTaskId());
     }
 
@@ -53,7 +53,7 @@ public class Init implements CommandLineRunner {
         return userId;
     }
 
-    private Task createEasyJavaProblem(User author, String description){
+    private Task createEasyJavaTask(User author, String description){
        Task task = new Task();
        task.setAuthor(author);
         task.setDescription(description);
@@ -62,6 +62,6 @@ public class Init implements CommandLineRunner {
                         .setText("//Write your code here")
                         .setProgrammingLanguage(ProgrammingLanguage.JAVA));
         task.setMaxAttempts(3);
-       return problemRepository.save(task);
+       return taskRepository.save(task);
     }
 }

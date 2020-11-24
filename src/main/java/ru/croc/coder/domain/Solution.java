@@ -10,6 +10,10 @@ public class Solution {
     @ManyToOne
     private Course course;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private SolutionStatus solutionStatus;
+
     @JoinColumn(nullable = false)
     @ManyToOne(optional = false)
     private Task task;
@@ -18,6 +22,10 @@ public class Solution {
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long solutionId;
+
+    public void setPassed(Boolean passed) {
+        this.passed = passed;
+    }
 
     Boolean passed;
 
@@ -30,6 +38,16 @@ public class Solution {
 
     @Embedded
     private Code code;
+
+
+    public SolutionStatus getSolutionStatus() {
+        return solutionStatus;
+    }
+
+    public Solution setSolutionStatus(SolutionStatus solutionStatus) {
+        this.solutionStatus = solutionStatus;
+        return this;
+    }
 
     public User getAuthor() {
         return author;
@@ -69,10 +87,6 @@ public class Solution {
 
     public Boolean getPassed() {
         return passed;
-    }
-
-    public void setPassed(Boolean passed) {
-        this.passed = passed;
     }
 
     public void setTime(LocalDateTime time) {

@@ -18,15 +18,17 @@ public class Code {
         return text;
     }
 
-    public void setText(String text) {
+    public Code setText(String text) {
         this.text = text;
+        return this;
     }
 
     public ProgrammingLanguage getProgrammingLanguage() {
         return programmingLanguage;
     }
 
-    public void setProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
+    public Code setProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
         this.programmingLanguage = programmingLanguage;
+        return this;
     }
 }
